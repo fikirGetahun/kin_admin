@@ -1,9 +1,9 @@
-// import "../vendors/css/vendor.bundle.base.css";
-// import "../vendors/simple-line-icons/css/simple-line-icons.css";
-// import "../vendors/typicons/typicons.css";
-// import "../vendors/ti-icons/css/themify-icons.css";
-// import "../vendors/mdi/css/materialdesignicons.min.css";
-// import "../vendors/feather/feather.css";
+import "../vendors/css/vendor.bundle.base.css";
+import "../vendors/simple-line-icons/css/simple-line-icons.css";
+import "../vendors/typicons/typicons.css";
+import "../vendors/ti-icons/css/themify-icons.css";
+import "../vendors/mdi/css/materialdesignicons.min.css";
+import "../vendors/feather/feather.css";
 import "../css/vertical-layout-light/style.css";
 // import "../vendors/js/vendor.bundle.base.js";
 // import "../css/vertical-layout-light/style.css";
