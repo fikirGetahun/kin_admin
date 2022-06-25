@@ -8,6 +8,26 @@ import "../css/vertical-layout-light/style.css";
 // import "../vendors/js/vendor.bundle.base.js";
 // import "../css/vertical-layout-light/style.css";
 // import "../css/vertical-layout-light/style.css";
+import { styled, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+// import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import MuiDrawer from "@mui/material/Drawer";
 import React from "react";
 import {
   NavLink,
@@ -19,32 +39,86 @@ import {
 } from "react-router-dom";
 import ArtistForm from "./artist/artistForm";
 
-{
-  /* <html lang="en">
+const drawerWidth = 240;
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Star Admin2 </title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="../vendors/feather/feather.css">
-  <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="../vendors/typicons/typicons.css">
-  <link rel="stylesheet" href="../vendors/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="../vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-   <link rel="stylesheet" href="../css/vertical-layout-light/style.css">
-   <link rel="shortcut icon" href="images/favicon.png" />
-</head> */
-}
+const openedMixin = (theme) => ({
+  width: drawerWidth,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: "hidden",
+});
+
+const closedMixin = (theme) => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: "hidden",
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
+  },
+});
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixin(theme),
+    "& .MuiDrawer-paper": openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    "& .MuiDrawer-paper": closedMixin(theme),
+  }),
+}));
 
 const DashBoard = () => {
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(true);
+
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+    // setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <div className="container-scroller">
@@ -54,10 +128,32 @@ const DashBoard = () => {
               <button
                 className="navbar-toggler navbar-toggler align-self-center"
                 type="button"
+                // onClick={handleDrawerOpen}
                 data-bs-toggle="minimize"
               >
-                <span className="icon-menu"></span>
+                {/* <span className="icon-menu"></span> */}
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  // sx={{
+                  //   marginRight: 5,
+                  //   ...(!open && { display: "none" }),
+                  // }}
+                >
+                  <MenuIcon />
+                </IconButton>
               </button>
+              {/* <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                // sx={{ mr: 2, ...(open && { display: "none" }) }}
+              >
+                <MenuIcon />
+              </IconButton> */}
             </div>
             <div>
               <a className="navbar-brand brand-logo" href="index.html">
@@ -533,278 +629,304 @@ const DashBoard = () => {
               </div>
             </div>
           </div>
-          <nav className="sidebar sidebar-offcanvas" id="sidebar">
-            <ul className="nav">
-              <li className="nav-item">
-                <a className="nav-link" href="index.html">
-                  <i className="mdi mdi-grid-large menu-icon"></i>
-                  <span className="menu-title">Dashboard</span>
-                </a>
-              </li>
-              <li className="nav-item nav-category">View Status</li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#ui-basic1"
-                  aria-expanded="false"
-                  aria-controls="ui-basic1"
-                >
-                  <i className="menu-icon mdi mdi-floor-plan"></i>
-                  <span className="menu-title">Artists</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="ui-basic1">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <NavLink className="nav-link" to="listArtists">
-                        List Artists
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      {" "}
-                      <NavLink className="nav-link" to="listAlbum">
-                        List Album
-                      </NavLink>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#uiw-basic2x"
-                  aria-expanded="false"
-                  aria-controls="uiw-basic2x"
-                >
-                  <i className="menu-icon mdi mdi-floor-plan"></i>
-                  <span className="menu-title">Podcasts</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="uiw-basic2x">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/ui-features/buttons.html"
-                      >
-                        List Podcast
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#uiw-basic2x3"
-                  aria-expanded="false"
-                  aria-controls="uiw-basic2x3"
-                >
-                  <i className="menu-icon mdi mdi-floor-plan"></i>
-                  <span className="menu-title">Track[Music]</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="uiw-basic2x3">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/ui-features/buttons.html"
-                      >
-                        List Track
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#uiw-basic2x34"
-                  aria-expanded="false"
-                  aria-controls="uiw-basic2x34"
-                >
-                  <i className="menu-icon mdi mdi-floor-plan"></i>
-                  <span className="menu-title">FM</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="uiw-basic2x34">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/ui-features/buttons.html"
-                      >
-                        List FM
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item nav-category">Management</li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#form-elements"
-                  aria-expanded="false"
-                  aria-controls="form-elements"
-                >
-                  <i className="menu-icon mdi mdi-card-text-outline"></i>
-                  <span className="menu-title">Artists</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="form-elements">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/addArtist">
-                        Add Artist
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/addAlbum">
-                        Add Album
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink className="nav-link" to="/editArtist">
-                        Edit Artist
-                      </NavLink>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#charts"
-                  aria-expanded="false"
-                  aria-controls="charts"
-                >
-                  <i className="menu-icon mdi mdi-chart-line"></i>
-                  <span className="menu-title">Podcast</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="charts">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/charts/chartjs.html">
-                        Add Podcast
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/charts/chartjs.html">
-                        Edit Podcast
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#tables"
-                  aria-expanded="false"
-                  aria-controls="tables"
-                >
-                  <i className="menu-icon mdi mdi-table"></i>
-                  <span className="menu-title">Track[Music]</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="tables">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/tables/basic-table.html"
-                      >
-                        Add Track
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/tables/basic-table.html"
-                      >
-                        Edit Track
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#icons"
-                  aria-expanded="false"
-                  aria-controls="icons"
-                >
-                  <i className="menu-icon mdi mdi-layers-outline"></i>
-                  <span className="menu-title">FM</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="icons">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/icons/mdi.html">
-                        Add FM
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/icons/mdi.html">
-                        Edit FM
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  data-bs-toggle="collapse"
-                  href="#icons"
-                  aria-expanded="false"
-                  aria-controls="icons"
-                >
-                  <i className="menu-icon mdi mdi-layers-outline"></i>
-                  <span className="menu-title">Other Managment</span>
-                  <i className="menu-arrow"></i>
-                </a>
-                <div className="collapse" id="icons">
-                  <ul className="nav flex-column sub-menu">
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/icons/mdi.html">
-                        Add Encoder
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      {" "}
-                      <a className="nav-link" href="pages/icons/mdi.html">
-                        Add Genere
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              {/* <li className="nav-item nav-category">pages</li>
+          <Drawer
+            className="sidebar sidebar-offcanvas"
+            variant="permanent"
+            id="sidebar"
+            open={open}
+          >
+            <nav className="sidebar sidebar-offcanvas">
+              {/* <Drawer
+            className="sidebar sidebar-offcanvas"
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              "& .MuiDrawer-paper": {
+                width: drawerWidth,
+                boxSizing: "border-box",
+              },
+            }}
+            variant="persistent"
+            anchor="left"
+            open={open}
+          > */}
+              {"                   "}
+              {"                   "}
+
+              {"                   "}
+
+              {"                   "}
+              <ul className="nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="index.html">
+                    <i className="mdi mdi-grid-large menu-icon"></i>
+                    <span className="menu-title">Dashboard</span>
+                  </a>
+                </li>
+                <li className="nav-item nav-category">View Status</li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#ui-basic1"
+                    aria-expanded="false"
+                    aria-controls="ui-basic1"
+                  >
+                    <i className="menu-icon mdi mdi-floor-plan"></i>
+                    <span className="menu-title">Artists</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="ui-basic1">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <NavLink className="nav-link" to="listArtists">
+                          List Artists
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        {" "}
+                        <NavLink className="nav-link" to="listAlbum">
+                          List Album
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#uiw-basic2x"
+                    aria-expanded="false"
+                    aria-controls="uiw-basic2x"
+                  >
+                    <i className="menu-icon mdi mdi-floor-plan"></i>
+                    <span className="menu-title">Podcasts</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="uiw-basic2x">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <a
+                          className="nav-link"
+                          href="pages/ui-features/buttons.html"
+                        >
+                          List Podcast
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#uiw-basic2x3"
+                    aria-expanded="false"
+                    aria-controls="uiw-basic2x3"
+                  >
+                    <i className="menu-icon mdi mdi-floor-plan"></i>
+                    <span className="menu-title">Track[Music]</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="uiw-basic2x3">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <NavLink to="listTrack" className="nav-link">
+                          List Track
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#uiw-basic2x34"
+                    aria-expanded="false"
+                    aria-controls="uiw-basic2x34"
+                  >
+                    <i className="menu-icon mdi mdi-floor-plan"></i>
+                    <span className="menu-title">FM</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="uiw-basic2x34">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <a
+                          className="nav-link"
+                          href="pages/ui-features/buttons.html"
+                        >
+                          List FM
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item nav-category">Management</li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#form-elements"
+                    aria-expanded="false"
+                    aria-controls="form-elements"
+                  >
+                    <i className="menu-icon mdi mdi-card-text-outline"></i>
+                    <span className="menu-title">Artists</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="form-elements">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/addArtist">
+                          Add Artist
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/addAlbum">
+                          Add Album
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink className="nav-link" to="/editArtist">
+                          Edit Artist
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#charts"
+                    aria-expanded="false"
+                    aria-controls="charts"
+                  >
+                    <i className="menu-icon mdi mdi-chart-line"></i>
+                    <span className="menu-title">Podcast</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="charts">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <a
+                          className="nav-link"
+                          href="pages/charts/chartjs.html"
+                        >
+                          Add Podcast
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        {" "}
+                        <a
+                          className="nav-link"
+                          href="pages/charts/chartjs.html"
+                        >
+                          Edit Podcast
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#tables"
+                    aria-expanded="false"
+                    aria-controls="tables"
+                  >
+                    <i className="menu-icon mdi mdi-table"></i>
+                    <span className="menu-title">Track[Music]</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="tables">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <NavLink to="addTrack" className="nav-link">
+                          Add Track
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        {" "}
+                        <a
+                          className="nav-link"
+                          href="pages/tables/basic-table.html"
+                        >
+                          Edit Track
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#icons"
+                    aria-expanded="false"
+                    aria-controls="icons"
+                  >
+                    <i className="menu-icon mdi mdi-layers-outline"></i>
+                    <span className="menu-title">FM</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="icons">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <a className="nav-link" href="pages/icons/mdi.html">
+                          Add FM
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        {" "}
+                        <a className="nav-link" href="pages/icons/mdi.html">
+                          Edit FM
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    data-bs-toggle="collapse"
+                    href="#icons"
+                    aria-expanded="false"
+                    aria-controls="icons"
+                  >
+                    <i className="menu-icon mdi mdi-layers-outline"></i>
+                    <span className="menu-title">Other Managment</span>
+                    <i className="menu-arrow"></i>
+                  </a>
+                  <div className="collapse" id="icons">
+                    <ul className="nav flex-column sub-menu">
+                      <li className="nav-item">
+                        {" "}
+                        <a className="nav-link" href="pages/icons/mdi.html">
+                          Add Encoder
+                        </a>
+                      </li>
+                      <li className="nav-item">
+                        {" "}
+                        <a className="nav-link" href="pages/icons/mdi.html">
+                          Add Genere
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                {/* <li className="nav-item nav-category">pages</li>
               <li className="nav-item">
                 <a
                   className="nav-link"
@@ -839,8 +961,10 @@ const DashBoard = () => {
                   <span className="menu-title">Documentation</span>
                 </a>
               </li> */}
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+          </Drawer>
+
           <div className="main-panel">
             <div className="content-wrapper">
               <Outlet />

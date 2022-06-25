@@ -6,6 +6,8 @@ import ArtistForm from "./pages/artist/artistForm";
 import ListArtist from "./pages/artist/listArtist";
 import AlbumForm from "./pages/album/albumForm";
 import ListAlbum from "./pages/album/listAlbum";
+import TrackList from "./pages/track/trackList";
+import TrackForm from "./pages/track/trackForm";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/listArtists" element={<ListArtist />} />
             <Route path="/addAlbum" element={<AlbumForm />} />
             <Route path="/listAlbum" element={<ListAlbum />} />
+            <Route path="/listTrack" element={<TrackList />} />
+            <Route path="/addTrack" element={<TrackForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

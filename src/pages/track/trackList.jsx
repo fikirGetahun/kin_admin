@@ -27,23 +27,43 @@ const TrackList = () => {
               </form>
             </div>
             <div className="col">
-              <div className="d-flex justify-content-start">
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-simple-select-required-label">
-                    Sort By
-                  </InputLabel>
-                  <Select
-                    labelId="demo-selected-small"
-                    id="demo-selected-small"
-                    label="Sort By"
-                    color="warning"
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value="A">A</MenuItem>
-                  </Select>
-                </FormControl>
+              <div className="hstack gap-2">
+                <div className="d-flex justify-content-start">
+                  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <InputLabel id="demo-simple-select-required-label">
+                      Sort By
+                    </InputLabel>
+                    <Select
+                      labelId="demo-selected-small"
+                      id="demo-selected-small"
+                      label="Sort By"
+                      color="warning"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="A">A</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className="d-flex justify-content-start">
+                  <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
+                    <InputLabel id="demo-simple-select-required-label">
+                      Sort By Genere
+                    </InputLabel>
+                    <Select
+                      labelId="demo-selected-small"
+                      id="demo-selected-small"
+                      label="Sort By Genere"
+                      color="warning"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="A">Regge</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
               </div>
             </div>
           </div>

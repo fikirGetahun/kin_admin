@@ -49,7 +49,7 @@ const ListAlbum = () => {
                 <div className="d-flex justify-content-start">
                   <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
                     <InputLabel id="demo-simple-select-required-label">
-                      Sort Genere
+                      Sort By Genere
                     </InputLabel>
                     <Select
                       labelId="demo-selected-small"
