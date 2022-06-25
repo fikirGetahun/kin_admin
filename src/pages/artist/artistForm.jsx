@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
+import { Select } from "@mui/material";
 import Button from "@mui/material/Button";
 const ArtistForm = () => {
   return (
@@ -62,7 +62,7 @@ const ArtistForm = () => {
                   </div>
                 </div>
               </div>
-              <div className="vstack gap-5 col-lg-6 col-12">
+              <div className="vstack gap-3 col-lg-6 col-12">
                 <div class="d-flex justify-content-start">
                   <div class="hstack gap-3">
                     <TextField
@@ -80,22 +80,20 @@ const ArtistForm = () => {
                 </div>
                 <div class="hstack gap-3">
                   <div>
-                    <InputLabel
-                      variant="standard"
-                      htmlFor="uncontrolled-native"
-                    >
-                      Gender
-                    </InputLabel>
-                    <NativeSelect
-                      // defaultValue={30}
-                      inputProps={{
-                        name: "age",
-                        id: "uncontrolled-native",
-                      }}
-                    >
-                      <option value={1}>Male</option>
-                      <option value={2}>Female</option>
-                    </NativeSelect>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-simple-select-required-label">
+                        Gender
+                      </InputLabel>
+                      <Select
+                        labelId="demo-selected-small"
+                        id="demo-selected-small"
+                        label="Gender"
+                        color="warning"
+                      >
+                        <MenuItem value="A">Male</MenuItem>
+                        <MenuItem value="A">Female</MenuItem>
+                      </Select>
+                    </FormControl>
                   </div>
                   <div></div>
                 </div>
@@ -105,6 +103,7 @@ const ArtistForm = () => {
                       id="outlined-multiline-flexible"
                       label="Description"
                       multiline
+                      rows={5}
                       maxRows={10}
                     />
                   </FormControl>

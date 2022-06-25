@@ -558,12 +558,7 @@ const DashBoard = () => {
                   <ul className="nav flex-column sub-menu">
                     <li className="nav-item">
                       {" "}
-                      <a
-                        className="nav-link"
-                        href="pages/ui-features/buttons.html"
-                      >
-                        List Artists
-                      </a>
+                      <NavLink to="listArtists">List Artists</NavLink>
                     </li>
                   </ul>
                 </div>
@@ -667,7 +662,7 @@ const DashBoard = () => {
                       </NavLink>
                     </li>
                     <li className="nav-item">
-                      <NavLink className="nav-link" to="/addArtist">
+                      <NavLink className="nav-link" to="/editArtist">
                         Edit Artist
                       </NavLink>
                     </li>
