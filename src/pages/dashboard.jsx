@@ -560,6 +560,10 @@ const DashBoard = () => {
                       {" "}
                       <NavLink to="listArtists">List Artists</NavLink>
                     </li>
+                    <li className="nav-item">
+                      {" "}
+                      <NavLink to="listAlbumas">List Album</NavLink>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -659,6 +663,11 @@ const DashBoard = () => {
                     <li className="nav-item">
                       <NavLink className="nav-link" to="/addArtist">
                         Add Artist
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/addAlbum">
+                        Add Album
                       </NavLink>
                     </li>
                     <li className="nav-item">
