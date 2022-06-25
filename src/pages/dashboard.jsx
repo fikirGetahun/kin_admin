@@ -128,11 +128,11 @@ const DashBoard = () => {
               <button
                 className="navbar-toggler navbar-toggler align-self-center"
                 type="button"
-                // onClick={handleDrawerOpen}
+                onClick={handleDrawerOpen}
                 data-bs-toggle="minimize"
               >
-                {/* <span className="icon-menu"></span> */}
-                <IconButton
+                <span className="icon-menu"></span>
+                {/* <IconButton
                   color="inherit"
                   aria-label="open drawer"
                   onClick={handleDrawerOpen}
@@ -143,7 +143,7 @@ const DashBoard = () => {
                   // }}
                 >
                   <MenuIcon />
-                </IconButton>
+                </IconButton> */}
               </button>
               {/* <IconButton
                 color="inherit"
@@ -164,151 +164,232 @@ const DashBoard = () => {
               </a>
             </div>
           </div>
-          <div className="navbar-menu-wrapper d-flex align-items-top">
-            <div className="hstack gap-4">
-              <form className="search-form" action="#">
-                <input
-                  type="search"
-                  className="form-control"
-                  placeholder="Search Here"
-                  title="Search here"
-                />
-              </form>
-              <i className="icon-search"></i>
-            </div>
-            <ul className="navbar-nav">
-              <li className="nav-item dropdown">
+          <div class="navbar-menu-wrapper d-flex align-items-top">
+            <ul class="navbar-nav">
+              <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                <h1 class="welcome-text">
+                  Good Morning, <span class="text-black fw-bold">John Doe</span>
+                </h1>
+                <h3 class="welcome-sub-text">
+                  Your performance summary this week{" "}
+                </h3>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown d-none d-lg-block">
                 <a
-                  className="nav-link count-indicator"
-                  id="notificationDropdown"
+                  class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split"
+                  id="messageDropdown"
                   href="#"
                   data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
-                  <i className="icon-mail icon-lg"></i>
+                  {" "}
+                  Select Category{" "}
                 </a>
                 <div
-                  className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
-                  aria-labelledby="notificationDropdown"
+                  class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                  aria-labelledby="messageDropdown"
                 >
-                  <a className="dropdown-item py-3 border-bottom">
-                    <p className="mb-0 font-weight-medium float-left">
-                      You have 4 new notifications{" "}
+                  <a class="dropdown-item py-3">
+                    <p class="mb-0 font-weight-medium float-left">
+                      Select category
                     </p>
-                    <span className="badge badge-pill badge-primary float-right">
-                      View all
-                    </span>
                   </a>
-                  <a className="dropdown-item preview-item py-3">
-                    <div className="preview-thumbnail">
-                      <i className="mdi mdi-alert m-auto text-primary"></i>
-                    </div>
-                    <div className="preview-item-content">
-                      <h6 className="preview-subject fw-normal text-dark mb-1">
-                        Application Error
-                      </h6>
-                      <p className="fw-light small-text mb-0"> Just now </p>
-                    </div>
-                  </a>
-                  <a className="dropdown-item preview-item py-3">
-                    <div className="preview-thumbnail">
-                      <i className="mdi mdi-settings m-auto text-primary"></i>
-                    </div>
-                    <div className="preview-item-content">
-                      <h6 className="preview-subject fw-normal text-dark mb-1">
-                        Settings
-                      </h6>
-                      <p className="fw-light small-text mb-0">
-                        {" "}
-                        Private message{" "}
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
+                        Bootstrap Bundle{" "}
+                      </p>
+                      <p class="fw-light small-text mb-0">
+                        This is a Bundle featuring 16 unique dashboards
                       </p>
                     </div>
                   </a>
-                  <a className="dropdown-item preview-item py-3">
-                    <div className="preview-thumbnail">
-                      <i className="mdi mdi-airballoon m-auto text-primary"></i>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
+                        Angular Bundle
+                      </p>
+                      <p class="fw-light small-text mb-0">
+                        Everything you’ll ever need for your Angular projects
+                      </p>
                     </div>
-                    <div className="preview-item-content">
-                      <h6 className="preview-subject fw-normal text-dark mb-1">
-                        New user registration
-                      </h6>
-                      <p className="fw-light small-text mb-0"> 2 days ago </p>
+                  </a>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
+                        VUE Bundle
+                      </p>
+                      <p class="fw-light small-text mb-0">
+                        Bundle of 6 Premium Vue Admin Dashboard
+                      </p>
+                    </div>
+                  </a>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
+                        React Bundle
+                      </p>
+                      <p class="fw-light small-text mb-0">
+                        Bundle of 8 Premium React Admin Dashboard
+                      </p>
                     </div>
                   </a>
                 </div>
               </li>
-              <li className="nav-item dropdown">
+              <li class="nav-item d-none d-lg-block">
+                <div
+                  id="datepicker-popup"
+                  class="input-group date datepicker navbar-date-picker"
+                >
+                  <span class="input-group-addon input-group-prepend border-right">
+                    <span class="icon-calendar input-group-text calendar-icon"></span>
+                  </span>
+                  <input type="text" class="form-control" />
+                </div>
+              </li>
+              <li class="nav-item">
+                <form class="search-form" action="#">
+                  <i class="icon-search"></i>
+                  <input
+                    type="search"
+                    class="form-control"
+                    placeholder="Search Here"
+                    title="Search here"
+                  />
+                </form>
+              </li>
+              <li class="nav-item dropdown">
                 <a
-                  className="nav-link count-indicator"
+                  class="nav-link count-indicator"
+                  id="notificationDropdown"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="icon-mail icon-lg"></i>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                  aria-labelledby="notificationDropdown"
+                >
+                  <a class="dropdown-item py-3 border-bottom">
+                    <p class="mb-0 font-weight-medium float-left">
+                      You have 4 new notifications{" "}
+                    </p>
+                    <span class="badge badge-pill badge-primary float-right">
+                      View all
+                    </span>
+                  </a>
+                  <a class="dropdown-item preview-item py-3">
+                    <div class="preview-thumbnail">
+                      <i class="mdi mdi-alert m-auto text-primary"></i>
+                    </div>
+                    <div class="preview-item-content">
+                      <h6 class="preview-subject fw-normal text-dark mb-1">
+                        Application Error
+                      </h6>
+                      <p class="fw-light small-text mb-0"> Just now </p>
+                    </div>
+                  </a>
+                  <a class="dropdown-item preview-item py-3">
+                    <div class="preview-thumbnail">
+                      <i class="mdi mdi-settings m-auto text-primary"></i>
+                    </div>
+                    <div class="preview-item-content">
+                      <h6 class="preview-subject fw-normal text-dark mb-1">
+                        Settings
+                      </h6>
+                      <p class="fw-light small-text mb-0"> Private message </p>
+                    </div>
+                  </a>
+                  <a class="dropdown-item preview-item py-3">
+                    <div class="preview-thumbnail">
+                      <i class="mdi mdi-airballoon m-auto text-primary"></i>
+                    </div>
+                    <div class="preview-item-content">
+                      <h6 class="preview-subject fw-normal text-dark mb-1">
+                        New user registration
+                      </h6>
+                      <p class="fw-light small-text mb-0"> 2 days ago </p>
+                    </div>
+                  </a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link count-indicator"
                   id="countDropdown"
                   href="#"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i className="icon-bell"></i>
-                  <span className="count"></span>
+                  <i class="icon-bell"></i>
+                  <span class="count"></span>
                 </a>
                 <div
-                  className="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+                  class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
                   aria-labelledby="countDropdown"
                 >
-                  <a className="dropdown-item py-3">
-                    <p className="mb-0 font-weight-medium float-left">
+                  <a class="dropdown-item py-3">
+                    <p class="mb-0 font-weight-medium float-left">
                       You have 7 unread mails{" "}
                     </p>
-                    <span className="badge badge-pill badge-primary float-right">
+                    <span class="badge badge-pill badge-primary float-right">
                       View all
                     </span>
                   </a>
-                  <div className="dropdown-divider"></div>
-                  <a className="dropdown-item preview-item">
-                    <div className="preview-thumbnail">
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
                       <img
                         src="images/faces/face10.jpg"
                         alt="image"
-                        className="img-sm profile-pic"
+                        class="img-sm profile-pic"
                       />
                     </div>
-                    <div className="preview-item-content flex-grow py-2">
-                      <p className="preview-subject ellipsis font-weight-medium text-dark">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
                         Marian Garner{" "}
                       </p>
-                      <p className="fw-light small-text mb-0">
+                      <p class="fw-light small-text mb-0">
                         {" "}
                         The meeting is cancelled{" "}
                       </p>
                     </div>
                   </a>
-                  <a className="dropdown-item preview-item">
-                    <div className="preview-thumbnail">
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
                       <img
                         src="images/faces/face12.jpg"
                         alt="image"
-                        className="img-sm profile-pic"
+                        class="img-sm profile-pic"
                       />
                     </div>
-                    <div className="preview-item-content flex-grow py-2">
-                      <p className="preview-subject ellipsis font-weight-medium text-dark">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
                         David Grey{" "}
                       </p>
-                      <p className="fw-light small-text mb-0">
+                      <p class="fw-light small-text mb-0">
                         {" "}
                         The meeting is cancelled{" "}
                       </p>
                     </div>
                   </a>
-                  <a className="dropdown-item preview-item">
-                    <div className="preview-thumbnail">
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
                       <img
                         src="images/faces/face1.jpg"
                         alt="image"
-                        className="img-sm profile-pic"
+                        class="img-sm profile-pic"
                       />
                     </div>
-                    <div className="preview-item-content flex-grow py-2">
-                      <p className="preview-subject ellipsis font-weight-medium text-dark">
+                    <div class="preview-item-content flex-grow py-2">
+                      <p class="preview-subject ellipsis font-weight-medium text-dark">
                         Travis Jenkins{" "}
                       </p>
-                      <p className="fw-light small-text mb-0">
+                      <p class="fw-light small-text mb-0">
                         {" "}
                         The meeting is cancelled{" "}
                       </p>
@@ -316,67 +397,65 @@ const DashBoard = () => {
                   </a>
                 </div>
               </li>
-              <li className="nav-item dropdown d-none d-lg-block user-dropdown">
+              <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                 <a
-                  className="nav-link"
+                  class="nav-link"
                   id="UserDropdown"
                   href="#"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <img
-                    className="img-xs rounded-circle"
+                    class="img-xs rounded-circle"
                     src="images/faces/face8.jpg"
                     alt="Profile image"
                   />{" "}
                 </a>
                 <div
-                  className="dropdown-menu dropdown-menu-right navbar-dropdown"
+                  class="dropdown-menu dropdown-menu-right navbar-dropdown"
                   aria-labelledby="UserDropdown"
                 >
-                  <div className="dropdown-header text-center">
+                  <div class="dropdown-header text-center">
                     <img
-                      className="img-md rounded-circle"
+                      class="img-md rounded-circle"
                       src="images/faces/face8.jpg"
                       alt="Profile image"
                     />
-                    <p className="mb-1 mt-3 font-weight-semibold">
-                      Allen Moreno
-                    </p>
-                    <p className="fw-light text-muted mb-0">
+                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
+                    <p class="fw-light text-muted mb-0">
                       allenmoreno@gmail.com
                     </p>
                   </div>
-                  <a className="dropdown-item">
-                    <i className="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>{" "}
+                  <a class="dropdown-item">
+                    <i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>{" "}
                     My Profile{" "}
-                    <span className="badge badge-pill badge-danger">1</span>
+                    <span class="badge badge-pill badge-danger">1</span>
                   </a>
-                  <a className="dropdown-item">
-                    <i className="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>{" "}
+                  <a class="dropdown-item">
+                    <i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>{" "}
                     Messages
                   </a>
-                  <a className="dropdown-item">
-                    <i className="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>{" "}
+                  <a class="dropdown-item">
+                    <i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>{" "}
                     Activity
                   </a>
-                  <a className="dropdown-item">
-                    <i className="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>{" "}
+                  <a class="dropdown-item">
+                    <i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>{" "}
                     FAQ
                   </a>
-                  <a className="dropdown-item">
-                    <i className="dropdown-item-icon mdi mdi-power text-primary me-2"></i>
+                  <a class="dropdown-item">
+                    <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>
                     Sign Out
                   </a>
                 </div>
               </li>
             </ul>
             <button
-              className="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+              class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
               type="button"
-              data-bs-toggle="offcanvas"
+              onClick={handleDrawerOpen}
             >
-              <span className="mdi mdi-menu"></span>
+              <span class="mdi mdi-menu"></span>
             </button>
           </div>
         </nav>
@@ -631,11 +710,12 @@ const DashBoard = () => {
           </div>
           <Drawer
             className="sidebar sidebar-offcanvas"
+            elevation={6}
             variant="permanent"
             id="sidebar"
             open={open}
           >
-            <nav className="sidebar sidebar-offcanvas">
+            <nav className="sidebar  ">
               {/* <Drawer
             className="sidebar sidebar-offcanvas"
             sx={{
@@ -650,13 +730,21 @@ const DashBoard = () => {
             anchor="left"
             open={open}
           > */}
-              {"                   "}
-              {"                   "}
 
-              {"                   "}
-
-              {"                   "}
               <ul className="nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="index.html">
+                    <i className="mdi mdi-grid-large menu-icon"></i>
+                    <span className="menu-title">Dashboard</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="index.html">
+                    <i className="mdi mdi-grid-large menu-icon"></i>
+                    <span className="menu-title">Dashboard</span>
+                  </a>
+                </li>
+
                 <li className="nav-item">
                   <a className="nav-link" href="index.html">
                     <i className="mdi mdi-grid-large menu-icon"></i>
