@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ArtistForm from "./pages/artist/artistForm";
 import ListArtist from "./pages/artist/listArtist";
 import AlbumForm from "./pages/album/albumForm";
+import ListAlbum from "./pages/album/listAlbum";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/addArtist" element={<ArtistForm />} />
             <Route path="/listArtists" element={<ListArtist />} />
             <Route path="/addAlbum" element={<AlbumForm />} />
+            <Route path="/listAlbum" element={<ListAlbum />} />
           </Route>
         </Routes>
       </BrowserRouter>

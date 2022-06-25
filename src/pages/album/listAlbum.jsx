@@ -6,7 +6,7 @@ import { Select } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Pagination from "@mui/material/Pagination";
 
-const TrackList = () => {
+const ListAlbum = () => {
   return (
     <div>
       <div className="card">
@@ -14,9 +14,9 @@ const TrackList = () => {
           <div className="row">
             <div className="col">
               <form>
-                <div className="hstack gap-3 d-flex-justify-content-center">
+                <div className="hstack gap-3 d-flex-justify-content-center align-items-center">
                   <TextField
-                    label="search"
+                    label="Search by Artist"
                     id="outlined-size-small"
                     defaultValue=" "
                     size="small"
@@ -27,23 +27,43 @@ const TrackList = () => {
               </form>
             </div>
             <div className="col">
-              <div className="d-flex justify-content-start">
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                  <InputLabel id="demo-simple-select-required-label">
-                    Sort By
-                  </InputLabel>
-                  <Select
-                    labelId="demo-selected-small"
-                    id="demo-selected-small"
-                    label="Sort By"
-                    color="warning"
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value="A">A</MenuItem>
-                  </Select>
-                </FormControl>
+              <div className="hstack gap-2">
+                <div className="d-flex justify-content-start">
+                  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <InputLabel id="demo-simple-select-required-label">
+                      Sort By
+                    </InputLabel>
+                    <Select
+                      labelId="demo-selected-small"
+                      id="demo-selected-small"
+                      label="Sort By"
+                      color="warning"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="A">A</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+                <div className="d-flex justify-content-start">
+                  <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
+                    <InputLabel id="demo-simple-select-required-label">
+                      Sort Genere
+                    </InputLabel>
+                    <Select
+                      labelId="demo-selected-small"
+                      id="demo-selected-small"
+                      label="Sort By Genere"
+                      color="warning"
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="A">Regge</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
               </div>
             </div>
           </div>
@@ -52,10 +72,11 @@ const TrackList = () => {
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Track Name</th>
+                  <th scope="col">Album Name</th>
                   <th scope="col">Artist</th>
+                  <th scope="col">Tracks</th>
                   <th scope="col">Descrition</th>
-                  <th scope="col">Albums</th>
+
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -100,4 +121,4 @@ const TrackList = () => {
   );
 };
 
-export default TrackList;
+export default ListAlbum;

@@ -558,11 +558,15 @@ const DashBoard = () => {
                   <ul className="nav flex-column sub-menu">
                     <li className="nav-item">
                       {" "}
-                      <NavLink to="listArtists">List Artists</NavLink>
+                      <NavLink className="nav-link" to="listArtists">
+                        List Artists
+                      </NavLink>
                     </li>
                     <li className="nav-item">
                       {" "}
-                      <NavLink to="listAlbumas">List Album</NavLink>
+                      <NavLink className="nav-link" to="listAlbum">
+                        List Album
+                      </NavLink>
                     </li>
                   </ul>
                 </div>
