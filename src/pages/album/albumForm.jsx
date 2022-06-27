@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Select } from "@mui/material";
 import Button from "@mui/material/Button";
+import { useDispatch } from "react-redux";
+import { albumActions } from "../../store/postData";
+import DragDropFile from "../../components/fileUpload/photoUpload";
+
 const AlbumForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div class="card">
@@ -25,9 +31,10 @@ const AlbumForm = () => {
                         id="demo-selected-small"
                         label="Gender"
                         color="warning"
+                        onChange={dispatch(albumActions.setArtistId)}
                       >
-                        <MenuItem value="A">Tedy Afro</MenuItem>
-                        <MenuItem value="A">Zeritu Kebede</MenuItem>
+                        <MenuItem value="5">Tedy Afro</MenuItem>
+                        <MenuItem value="6">Zeritu Kebede</MenuItem>
                       </Select>
                     </FormControl>
                   </div>
@@ -73,11 +80,9 @@ const AlbumForm = () => {
                   />
                 </FormControl>
                 <div className="row">
-                  <div className="d-flex justify-content-center align-items-center col">
-                    <span>Images</span>
-                  </div>
                   <div className="col">
-                    <input type="file" />
+                    {/* <input type="file" /> */}
+                    <DragDropFile selecter={"albumInput"} />
                   </div>
                 </div>
                 <div>

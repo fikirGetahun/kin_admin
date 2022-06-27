@@ -715,7 +715,7 @@ const DashBoard = () => {
             id="sidebar"
             open={open}
           >
-            <nav className="sidebar  ">
+            <nav className="sidebar sidebar-offcanvas ">
               {/* <Drawer
             className="sidebar sidebar-offcanvas"
             sx={{
@@ -989,15 +989,15 @@ const DashBoard = () => {
                   <a
                     className="nav-link"
                     data-bs-toggle="collapse"
-                    href="#icons"
+                    href="#icons2"
                     aria-expanded="false"
-                    aria-controls="icons"
+                    aria-controls="icons2"
                   >
                     <i className="menu-icon mdi mdi-layers-outline"></i>
                     <span className="menu-title">Other Managment</span>
                     <i className="menu-arrow"></i>
                   </a>
-                  <div className="collapse" id="icons">
+                  <div className="collapse" id="icons2">
                     <ul className="nav flex-column sub-menu">
                       <li className="nav-item">
                         {" "}

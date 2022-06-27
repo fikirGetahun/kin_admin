@@ -9,7 +9,7 @@ import Pagination from "@mui/material/Pagination";
 const TrackList = () => {
   return (
     <div>
-      <div className="card">
+      <div className="card"  >
         <div className="card-body">
           <div className="row">
             <div className="col">
