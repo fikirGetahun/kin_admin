@@ -33,7 +33,7 @@ export const albumActions = albumSlice.actions;
 export default albumSlice;
 
 const trackAddSlice = createSlice({
-  name: "trackAdd",
+  name: "track",
   initialState: {
     track_name: null,
     track_description: null,
@@ -43,22 +43,22 @@ const trackAddSlice = createSlice({
   },
   reducers: {
     settrack_name(state, action) {
-      state.aritistId = action.payload;
+      state.track_name = action.payload;
     },
     settrack_description(state, action) {
-      state.genre = action.payload;
+      state.track_description = action.payload;
     },
     settrack_genre(state, action) {
-      state.cover = action.payload;
+      state.track_genre = action.payload;
     },
     setalbum(state, action) {
-      state.desc = action.payload;
+      state.album = action.payload;
     },
     settrack_file(state, action) {
-      state.albumName = action.payload;
+      state.track_file = action.payload;
     },
   },
 });
 export const trackAddSliceActions = trackAddSlice.actions;
 
-export const TrackAddSlice = trackAddSlice;
+export const TrackAddSlicex = trackAddSlice;

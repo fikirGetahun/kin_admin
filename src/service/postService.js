@@ -46,5 +46,44 @@ class PostService {
         // setStatus(err);
       });
   };
+
+  CreateTrack = async () => {
+    const mdatax = new FormData();
+    var datax = store.getState().trackAdd;
+    console.log(datax);
+    console.log("dfdfdf");
+
+    mdatax.append("track_name", datax.track_name);
+    mdatax.append("track_description", datax.track_description);
+    mdatax.append("track_genre", datax.track_genre);
+    mdatax.append("album", datax.album);
+    mdatax.append("track_file", datax.track_file);
+
+    return await axios({
+      url: api.joinUrl(api.endpoints.createTrack),
+      method: "POST",
+      headers: header,
+      data: mdatax,
+    })
+      .then((res) => {
+        // alert(res.data);
+        // console.log(file);
+        // console.log(res.data);
+        // alert(res.data);c
+        if (res.status == 201) {
+          return "Track Created Successfully!";
+          //   setStatus("Album Created Successfully!");
+        } else {
+          return "error! conuld not add artist.";
+          //   setStatus("error  ");
+        }
+      })
+      .catch((err) => {
+        console.log("response: below");
+
+        return err;
+        // setStatus(err);
+      });
+  };
 }
 export default PostService;
