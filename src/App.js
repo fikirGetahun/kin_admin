@@ -8,6 +8,8 @@ import AlbumForm from "./pages/album/albumForm";
 import ListAlbum from "./pages/album/listAlbum";
 import TrackList from "./pages/track/trackList";
 import TrackForm from "./pages/track/trackForm";
+import EditAlbumForm from "./pages/album/editAlbum";
+import EditListAlbum from "./pages/album/editList";
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
             <Route path="/listAlbum" element={<ListAlbum />} />
             <Route path="/listTrack" element={<TrackList />} />
             <Route path="/addTrack" element={<TrackForm />} />
+            <Route path="/editArtistList" element={<EditListAlbum />} />
+            <Route path="/editAlbum">
+              <Route path=":albumId" element={<EditAlbumForm />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

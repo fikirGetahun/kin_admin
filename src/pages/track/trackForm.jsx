@@ -8,17 +8,102 @@ import Button from "@mui/material/Button";
 import TrackUpload from "../../components/fileUpload/trackUpload";
 import { useDispatch, useSelector } from "react-redux";
 import { trackAddSliceActions } from "../../store/postData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PostService from "../../service/postService";
 import getService from "../../service/getService";
 
 const poster = new PostService();
 const getter = new getService();
+
 const TrackForm = () => {
   const [formState, setFormState] = useState();
   const dispatch = useDispatch();
   var reduxData = useSelector((state) => state.trackAdd);
   const [isLoading, setIsLoading] = useState(false);
+  const [artists, setArtist] = useState([]);
+
+  const [selectedArtist, setSelectedArtist] = useState(null);
+  const [albumListx, setAlbumList] = useState([]);
+
+  var selectAlbumOption = [];
+  const changeART = (e) => {
+    setSelectedArtist(e.target.value);
+  };
+
+  if (selectedArtist == null) {
+    selectAlbumOption = [];
+    selectAlbumOption.push(
+      <div>
+        <InputLabel>Select Album</InputLabel>
+
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="demo-simple-select-required-label">Albums</InputLabel>
+
+          <Select
+            labelId="demo-selected-small"
+            id="demo-selected-small"
+            label="Gender"
+            onChange={(e) => {
+              dispatch(trackAddSliceActions.setalbum(e.target.value));
+            }}
+            color="warning"
+          >
+            <MenuItem value="">None</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
+    );
+  }
+
+  if (selectedArtist) {
+    selectAlbumOption = [];
+
+    // controller.abort();
+
+    selectAlbumOption.push(
+      <div>
+        <InputLabel>Select Album</InputLabel>
+
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="demo-simple-select-required-label">Albums</InputLabel>
+
+          <Select
+            labelId="demo-selected-small"
+            id="demo-selected-small"
+            label="Gender"
+            onChange={(e) => {
+              dispatch(trackAddSliceActions.setalbum(e.target.value));
+            }}
+            color="warning"
+          >
+            <MenuItem value="">None</MenuItem>
+
+            {albumListx.map((ke, index) => (
+              <MenuItem value={ke.id}>{ke.album_name}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
+    );
+  }
+
+  useEffect(() => {
+    var test = getter.getArtist();
+    test.then((res) => {
+      setArtist(res);
+    });
+  }, []);
+
+  useEffect(() => {
+    var alb = getter.getSingleArtist(selectedArtist);
+    alb.then((res) => {
+      var x = res.albums;
+      setAlbumList(x);
+      // console.log(selectedArtist);
+    });
+
+    // console.log(albumListx);
+  }, [selectedArtist]);
 
   function handleSubmit() {
     // Object.keys(reduxData).map((key, index) => {
@@ -81,9 +166,17 @@ const TrackForm = () => {
                         id="demo-selected-small"
                         label="Gender"
                         color="warning"
+                        // onSelect={changeART}
+                        onChange={(e) => {
+                          setSelectedArtist(e.target.value);
+                        }}
                       >
-                        <MenuItem value="1">Tedy Afro</MenuItem>
-                        <MenuItem value="2">Zeritu Kebede</MenuItem>
+                        {artists.map((ke) => (
+                          <MenuItem key={ke.id} value={ke.id}>
+                            {" "}
+                            {ke.artist_name}{" "}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </div>
@@ -118,30 +211,7 @@ const TrackForm = () => {
                       </Select>
                     </FormControl>
                   </div>
-                  <div>
-                    <InputLabel>Select Select</InputLabel>
-
-                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                      <InputLabel id="demo-simple-select-required-label">
-                        Albums
-                      </InputLabel>
-
-                      <Select
-                        labelId="demo-selected-small"
-                        id="demo-selected-small"
-                        label="Gender"
-                        onChange={(e) => {
-                          dispatch(
-                            trackAddSliceActions.setalbum(e.target.value)
-                          );
-                        }}
-                        color="warning"
-                      >
-                        <MenuItem value="1">alb</MenuItem>
-                        <MenuItem value="2">ss</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </div>
+                  <div>{selectAlbumOption}</div>
                 </div>
                 <TextField
                   id="standard-basic"

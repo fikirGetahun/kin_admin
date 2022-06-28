@@ -11,9 +11,10 @@ import { useSelect } from "@mui/base";
 import { useState } from "react";
 import { albumListActions } from "../../store/getData";
 import zIndex from "@mui/material/styles/zIndex";
+import { Link } from "react-router-dom";
 const getter = new getService();
 
-const ListAlbum = () => {
+const EditListAlbum = () => {
   const dispatch = useDispatch();
 
   const reduxDataRow = useSelector((state) => state.albumList);
@@ -154,7 +155,7 @@ const ListAlbum = () => {
                   <th scope="col">Tracks</th>
                   <th scope="col">Descrition</th>
 
-                  <th scope="col">Action</th>
+                  <th colspan="2">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -166,7 +167,12 @@ const ListAlbum = () => {
                     <td>@mdo</td>
                     <td>{key.album_description}</td>
                     <td>
-                      <button className="btn btn-warning">View More</button>
+                      <button className="btn btn-warning">
+                        <Link to={"/editAlbum/" + key.id}>Edit</Link>
+                      </button>
+                    </td>
+                    <td>
+                      <button className="btn btn-danger">Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -180,4 +186,4 @@ const ListAlbum = () => {
   );
 };
 
-export default ListAlbum;
+export default EditListAlbum;

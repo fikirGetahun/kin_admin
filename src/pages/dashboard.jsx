@@ -882,7 +882,7 @@ const DashBoard = () => {
                         </NavLink>
                       </li>
                       <li className="nav-item">
-                        <NavLink className="nav-link" to="/editArtist">
+                        <NavLink className="nav-link" to="/editArtistList">
                           Edit Artist
                         </NavLink>
                       </li>
@@ -946,12 +946,9 @@ const DashBoard = () => {
                       </li>
                       <li className="nav-item">
                         {" "}
-                        <a
-                          className="nav-link"
-                          href="pages/tables/basic-table.html"
-                        >
+                        <NavLink to="/editTrackList" className="nav-link">
                           Edit Track
-                        </a>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
