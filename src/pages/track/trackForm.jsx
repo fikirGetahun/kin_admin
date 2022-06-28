@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { Select } from "@mui/material";
 import Button from "@mui/material/Button";
+import TrackUpload from "../../components/fileUpload/trackUpload";
 const TrackForm = () => {
   return (
     <div>
@@ -87,17 +88,12 @@ const TrackForm = () => {
                   />
                 </FormControl>
                 <div className="row">
-                  <div className="d-flex justify-content-center align-items-center col">
-                    <span>Images</span>
-                  </div>
                   <div className="col">
-                    <input type="file" />
+                    {/* <input type="file" /> */}
+                    <TrackUpload selecter="trackUpload" />
                   </div>
                 </div>
-                <div>
-                  <label>Choose Track</label>
-                  <input type="file" />
-                </div>
+
                 <div>
                   <button className="btn btn-warning">Add Track</button>
                 </div>

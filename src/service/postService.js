@@ -1,5 +1,7 @@
 import axios from "axios";
 import apiUrl from "./apiUrl";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../store/mainStore";
 
 const api = new apiUrl();
 
@@ -8,16 +10,17 @@ var header = {
   // "Access-Control-Allow-Origin": "*",
 };
 
-class postService {
-  createAlbum = async (data) => {
+class PostService {
+  CreateAlbum = async () => {
     const mdata = new FormData();
+    const data = store.getState().albumAdd;
 
-    mdata.append("album_name", data.album_name);
-    mdata.append("album_description", data.album_description);
-    mdata.append("artist", data.artist);
-    mdata.append("album_cover", data.album_cover);
+    mdata.append("album_name", data.albumName);
+    mdata.append("album_description", data.desc);
+    mdata.append("artist", data.aritistId);
+    mdata.append("album_cover", data.cover);
 
-    await axios({
+    return await axios({
       url: api.joinUrl(api.endpoints.createAlbum),
       method: "POST",
       headers: header,
@@ -27,20 +30,21 @@ class postService {
         // alert(res.data);
         // console.log(file);
         // console.log(res.data);
-        // console.log(res);
         // alert(res.data);c
         if (res.status == 201) {
           return "Album Created Successfully!";
           //   setStatus("Album Created Successfully!");
         } else {
-          return "error";
+          return "error! conuld not add artist.";
           //   setStatus("error  ");
         }
       })
       .catch((err) => {
-        return "error";
+        console.log("response: below");
+
+        return err;
         // setStatus(err);
       });
   };
 }
-export default postService;
+export default PostService;

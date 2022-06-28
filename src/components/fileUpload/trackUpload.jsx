@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { albumActions } from "../../store/postData";
+import { albumActions, trackAddSliceActions } from "../../store/postData";
 import "./css/fileUploader.css";
 // drag drop file component
-const DragDropFile = ({ selecter }) => {
+const TrackUpload = ({ selecter }) => {
   const dispatch = useDispatch();
   // drag state
   const [dragActive, setDragActive] = useState(false);
@@ -37,8 +37,9 @@ const DragDropFile = ({ selecter }) => {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       // handleFiles(e.dataTransfer.files);
       setPhoto(e.dataTransfer.files[0]);
-      if (selecter == "albumInput") {
-        dispatch(albumActions.setCover(e.dataTransfer.files[0]));
+      if (selecter == "trackUpload") {
+        // dispatch(albumActions.setCover(e.dataTransfer.files[0]));
+        dispatch(trackAddSliceActions.settrack_file(e.dataTransfer.files[0]));
       } else {
       }
     }
@@ -50,11 +51,11 @@ const DragDropFile = ({ selecter }) => {
     if (e.target.files && e.target.files[0]) {
       // handleFiles(e.target.files);
       setPhoto(e.target.files[0]);
-      if (selecter == "albumInput") {
-        setSe("albumInput");
-        dispatch(albumActions.setCover(e.target.files[0]));
+
+      if (selecter == "trackUpload") {
+        // dispatch(albumActions.setCover(e.dataTransfer.files[0]));
+        dispatch(trackAddSliceActions.settrack_file(e.target.files[0]));
       } else {
-        alert("nooox");
       }
     }
   };
@@ -94,7 +95,7 @@ const DragDropFile = ({ selecter }) => {
             <div>
               <p>Drag and drop your file here or</p>
               <button className="upload-button" onClick={onButtonClick}>
-                Upload a file
+                Upload a Track
               </button>
             </div>
           </label>
@@ -112,4 +113,4 @@ const DragDropFile = ({ selecter }) => {
     </div>
   );
 };
-export default DragDropFile;
+export default TrackUpload;
