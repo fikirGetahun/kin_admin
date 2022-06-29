@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import PostService from "../../service/postService";
 import getService from "../../service/getService";
 import { useParams } from "react-router-dom";
+import { tempDatatActions } from "../../store/getData";
 
 const poster = new PostService();
 const getter = new getService();
@@ -27,11 +28,26 @@ const TrackEditForm = () => {
 
   const [selectedArtist, setSelectedArtist] = useState(null);
   const [albumListx, setAlbumList] = useState([]);
+  const [albumId, setAlbumId] = useState(false);
 
   var selectAlbumOption = [];
   const changeART = (e) => {
     setSelectedArtist(e.target.value);
   };
+
+  useEffect(() => {
+    var test = getter.getSinglseTrack(trackId);
+    test.then((res) => {
+      dispatch(tempDatatActions.setTempData(res));
+      setAlbumId(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    //   var va = reduxData.tempData.
+  }, [albumId]);
+
+  var reduxData = useSelector((state) => state.tempData);
 
   if (selectedArtist == null) {
     selectAlbumOption = [];
@@ -79,7 +95,7 @@ const TrackEditForm = () => {
             }}
             color="warning"
           >
-            <MenuItem value="">None</MenuItem>
+            <MenuItem value="">{reduxData.tempData.album}</MenuItem>
 
             {albumListx.map((ke, index) => (
               <MenuItem value={ke.id}>{ke.album_name}</MenuItem>
@@ -214,7 +230,33 @@ const TrackEditForm = () => {
                       </Select>
                     </FormControl>
                   </div>
-                  <div>{selectAlbumOption}</div>
+                  <div>
+                    {" "}
+                    <InputLabel>Select Album</InputLabel>
+                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                      <InputLabel id="demo-simple-select-required-label">
+                        Albums
+                      </InputLabel>
+
+                      <Select
+                        labelId="demo-selected-small"
+                        id="demo-selected-small"
+                        label="Gender"
+                        onChange={(e) => {
+                          dispatch(
+                            trackAddSliceActions.setalbum(e.target.value)
+                          );
+                        }}
+                        color="warning"
+                      >
+                        <MenuItem value="">{reduxData.tempData.album}</MenuItem>
+
+                        {/* {reduxData.tempData.map((ke, index) => (
+                          <MenuItem value={ke.id}>{ke.album_name}</MenuItem>
+                        ))} */}
+                      </Select>
+                    </FormControl>
+                  </div>
                 </div>
                 <TextField
                   id="standard-basic"

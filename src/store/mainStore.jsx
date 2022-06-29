@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import albumListSlice, { trackListSlice } from "./getData";
+import albumListSlice, { TempDataSlice, trackListSlice } from "./getData";
 import albumSlice, { TrackAddSlicex, ArtistAddSlicex } from "./postData";
 
 const store = configureStore({
@@ -9,6 +9,7 @@ const store = configureStore({
     trackAdd: TrackAddSlicex.reducer,
     artistAdd: ArtistAddSlicex.reducer,
     trackList: trackListSlice.reducer,
+    tempData: TempDataSlice.reducer
   },
 });
 

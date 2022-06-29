@@ -31,3 +31,16 @@ const TrackListSlice = createSlice({
 
 export const TrackListActions = TrackListSlice.actions;
 export const trackListSlice = TrackListSlice;
+
+const tempDataSlice = createSlice({
+  name: "temp",
+  initialState: { tempData: null },
+  reducers: {
+    setTempData(state, action) {
+      state.tempData = action.payload;
+    },
+  },
+});
+
+export const tempDatatActions = tempDataSlice.actions;
+export const TempDataSlice = tempDataSlice;
