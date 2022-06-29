@@ -6,7 +6,16 @@ import FormControl from "@mui/material/FormControl";
 import { Select } from "@mui/material";
 import Button from "@mui/material/Button";
 import DragDropFile from "../../components/fileUpload/photoUpload";
+import PostService from "../../service/postService";
+import getService from "../../service/getService";
+import { useDispatch, useSelector } from "react-redux";
+
 const ArtistForm = () => {
+  const dispatch = useDispatch();
+  const reduxData = useSelector((state) => state.artistAdd);
+
+  function handleSubmit() {}
+
   return (
     <div>
       <div class="card">
@@ -69,7 +78,7 @@ const ArtistForm = () => {
               </div>
             </div>
             <div className="float-right">
-              <Button variant="outlined" color="success">
+              <Button variant="outlined" color="success" onClick={handleSubmit}>
                 Add Artist
               </Button>
             </div>

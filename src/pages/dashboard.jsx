@@ -946,7 +946,7 @@ const DashBoard = () => {
                       </li>
                       <li className="nav-item">
                         {" "}
-                        <NavLink to="/editTrackList" className="nav-link">
+                        <NavLink to="/editTrack" className="nav-link">
                           Edit Track
                         </NavLink>
                       </li>

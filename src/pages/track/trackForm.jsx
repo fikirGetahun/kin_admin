@@ -11,11 +11,12 @@ import { trackAddSliceActions } from "../../store/postData";
 import { useState, useEffect } from "react";
 import PostService from "../../service/postService";
 import getService from "../../service/getService";
+import { tempDatatActions } from "../../store/getData";
 
 const poster = new PostService();
 const getter = new getService();
 
-const TrackForm = () => {
+function TrackForm() {
   const [formState, setFormState] = useState();
   const dispatch = useDispatch();
   var reduxData = useSelector((state) => state.trackAdd);
@@ -90,12 +91,15 @@ const TrackForm = () => {
   useEffect(() => {
     var test = getter.getArtist();
     test.then((res) => {
-      setArtist(res);
+      dispatch(tempDatatActions.setTempData(res));
+      // setArtist(res);
     });
   }, []);
+  var reduxS = useSelector((state) => state.tempData);
+  var x2 = reduxS.tempData;
 
   useEffect(() => {
-    var alb = getter.getSingleArtist(selectedArtist);
+    var alb = getter.getSingleArtist(x2);
     alb.then((res) => {
       var x = res.albums;
       setAlbumList(x);
@@ -263,6 +267,6 @@ const TrackForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default TrackForm;

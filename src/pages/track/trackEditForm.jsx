@@ -44,7 +44,7 @@ const TrackEditForm = () => {
   }, []);
 
   useEffect(() => {
-    //   var va = reduxData.tempData.
+      var va = reduxData.tempData.
   }, [albumId]);
 
   var reduxData = useSelector((state) => state.tempData);
