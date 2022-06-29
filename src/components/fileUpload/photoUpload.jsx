@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { albumActions } from "../../store/postData";
+import { albumActions, artistAddSliceActions } from "../../store/postData";
 import "./css/fileUploader.css";
 // drag drop file component
 const DragDropFile = ({ selecter }) => {
@@ -39,7 +39,10 @@ const DragDropFile = ({ selecter }) => {
       setPhoto(e.dataTransfer.files[0]);
       if (selecter == "albumInput") {
         dispatch(albumActions.setCover(e.dataTransfer.files[0]));
-      } else {
+      } else if (selecter == "artistInput") {
+        dispatch(
+          artistAddSliceActions.setartist_avatar(e.dataTransfer.files[0])
+        );
       }
     }
   };
@@ -53,8 +56,8 @@ const DragDropFile = ({ selecter }) => {
       if (selecter == "albumInput") {
         setSe("albumInput");
         dispatch(albumActions.setCover(e.target.files[0]));
-      } else {
-        alert("nooox");
+      } else if (selecter == "artistInput") {
+        dispatch(artistAddSliceActions.setartist_avatar(e.target.files[0]));
       }
     }
   };

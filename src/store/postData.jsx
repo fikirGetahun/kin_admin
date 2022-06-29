@@ -62,3 +62,26 @@ const trackAddSlice = createSlice({
 export const trackAddSliceActions = trackAddSlice.actions;
 
 export const TrackAddSlicex = trackAddSlice;
+
+const artistAddSlice = createSlice({
+  name: "track",
+  initialState: {
+    artist_name: null,
+    artist_avatar: null,
+    artist_description: null,
+  },
+  reducers: {
+    setartist_name(state, action) {
+      state.artist_name = action.payload;
+    },
+    setartist_avatar(state, action) {
+      state.artist_avatar = action.payload;
+    },
+    setartist_description(state, action) {
+      state.artist_description = action.payload;
+    },
+  },
+});
+export const artistAddSliceActions = artistAddSlice.actions;
+
+export const ArtistAddSlicex = trackAddSlice;

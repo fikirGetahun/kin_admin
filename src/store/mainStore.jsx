@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import albumListSlice from "./getData";
-import albumSlice, { TrackAddSlicex } from "./postData";
-import TrackAddSlice from "./postData";
+import albumListSlice, { trackListSlice } from "./getData";
+import albumSlice, { TrackAddSlicex, ArtistAddSlicex } from "./postData";
 
 const store = configureStore({
   reducer: {
     albumAdd: albumSlice.reducer,
     albumList: albumListSlice.reducer,
     trackAdd: TrackAddSlicex.reducer,
+    artistAdd: ArtistAddSlicex.reducer,
+    trackList: trackListSlice.reducer,
   },
 });
 

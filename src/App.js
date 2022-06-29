@@ -6,10 +6,12 @@ import ArtistForm from "./pages/artist/artistForm";
 import ListArtist from "./pages/artist/listArtist";
 import AlbumForm from "./pages/album/albumForm";
 import ListAlbum from "./pages/album/listAlbum";
-import TrackList from "./pages/track/trackList";
+import TrackList from "./pages/track/trackEditList";
 import TrackForm from "./pages/track/trackForm";
 import EditAlbumForm from "./pages/album/editAlbum";
 import EditListAlbum from "./pages/album/editList";
+import TrackEditForm from "./pages/track/trackEditForm";
+import TrackEditList from "./pages/track/trackEditList";
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
             <Route path="/editArtistList" element={<EditListAlbum />} />
             <Route path="/editAlbum">
               <Route path=":albumId" element={<EditAlbumForm />} />
+            </Route>
+            <Route path="/editTrackList" element={<TrackEditList />} />
+            <Route path="/editTrack">
+              <Route path=":trackId" element={<TrackEditForm />} />
             </Route>
           </Route>
         </Routes>

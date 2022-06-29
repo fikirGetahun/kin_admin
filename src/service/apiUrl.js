@@ -6,6 +6,7 @@ class apiUrls {
       getArtist: "artist",
       getAlbum: "album",
       createTrack: "track",
+      getTrack: "track",
     };
   }
 

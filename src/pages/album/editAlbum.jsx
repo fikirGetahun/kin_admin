@@ -15,20 +15,79 @@ import { useParams } from "react-router-dom";
 const poster = new PostService();
 const getter = new getService();
 const EditAlbumForm = () => {
+  const { albumId } = useParams();
+
   const dispatch = useDispatch();
   const data = useSelector((state) => state.albumAdd);
 
   const [status2, setStatus] = useState(null);
   const [formState, setFormState] = useState();
   const [artists, setArtist] = useState([]);
+  const [allAlbumData, setAllAlbumData] = useState("");
+  const [artistData, setArtistData] = useState("");
+  const [iii, setIii] = useState(false);
+  const [final, setFinal] = useState(false);
+  var gz;
+  const getAlbumData = async () => {
+    var testx = await getter.getSingleAlbum(albumId).then((res) => {
+      setAllAlbumData(res);
+      //
+      setIii(true);
+      // console.log(allAlbumData, "dfdf");
+    });
+  };
+
+  const getArtistData = async () => {
+    //get artist data
+
+    var ardata = await getter
+      .getSingleArtist(allAlbumData.artist)
+      .then((resw) => {
+        setArtistData(resw);
+        console.log(artistData);
+      });
+  };
+  useEffect(() => {
+    getAlbumData();
+    // alert(allAlbumData);
+  }, []);
 
   useEffect(() => {
-    var test = getter.getArtist();
-    test.then((res) => {
-      console.log(res);
-      setArtist(res);
-    });
-  }, []);
+    getArtistData();
+    setFinal(true);
+  }, [iii]);
+
+  var out = [];
+  if (final) {
+    out = [];
+    out.push(
+      <div>
+        <h6>Select Artist</h6>
+        <FormControl sx={{ m: 1, minWidth: 60 }} size="small">
+          <InputLabel id="demo-simple-select-required-label">Artist</InputLabel>
+          <Select
+            labelId="demo-selected-small"
+            id="demo-selected-small"
+            label="Gender"
+            color="warning"
+            onChange={(e) => {
+              dispatch(albumActions.setArtistId(e.target.value));
+            }}
+          >
+            <MenuItem value={allAlbumData && allAlbumData.artist}>
+              {iii && artistData.artist_name}
+            </MenuItem>
+            {artistData &&
+              artistData.map((key, index) => (
+                <MenuItem value={key.id}> {key.artist_name} </MenuItem>
+              ))}
+          </Select>
+        </FormControl>
+      </div>
+    );
+  } else {
+    out = [];
+  }
 
   function handleSubmit() {
     // alert(data);
@@ -86,30 +145,7 @@ const EditAlbumForm = () => {
             <div className="col">
               <div className="vstack gap-4">
                 <div className="d-flex justify-content-center align-item-center">
-                  <div className="vstack gap-1">
-                    <h6>Select Artist</h6>
-                    <FormControl sx={{ m: 1, minWidth: 60 }} size="small">
-                      <InputLabel id="demo-simple-select-required-label">
-                        Artist
-                      </InputLabel>
-                      <Select
-                        labelId="demo-selected-small"
-                        id="demo-selected-small"
-                        label="Gender"
-                        color="warning"
-                        onChange={(e) => {
-                          dispatch(albumActions.setArtistId(e.target.value));
-                        }}
-                      >
-                        {artists.map((key, index) => (
-                          <MenuItem value={key.id}>
-                            {" "}
-                            {key.artist_name}{" "}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </div>
+                  <div className="vstack gap-1">{out}</div>
                 </div>
               </div>
             </div>
